@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Maha ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, serif;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #ff6fae, #d63384, #ff9acb);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 750px;
+            margin: auto;
+            padding: 35px 15px;
+        }
+
+        h1 {
+            font-size: clamp(35px, 8vw, 58px);
+            text-shadow: 2px 3px 10px #a00055;
+        }
+
+        h2 {
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        button {
+            border: none;
+            border-radius: 30px;
+            padding: 14px 25px;
+            margin: 12px;
+            font-size: 17px;
+            font-weight: bold;
+            color: #d63384;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px #9d165a55;
+        }
+
+        button:hover {
+            transform: scale(1.04);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.19);
+            border: 1px solid #ffffff55;
+            border-radius: 22px;
+            padding: 25px 18px;
+            margin-top: 25px;
+            box-shadow: 0 8px 25px #8b164533;
+        }
+
+        #surprise {
+            display: none;
+        }
+
+        #finalMessage {
+            font-size: 23px;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        audio {
+            display: block;
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            pointer-events: none;
+            animation: floatUp 6s linear forwards;
+            z-index: 5;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .small {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="welcome">
+            <h1>🎂 Happy Birthday 🎂</h1>
+            <h2>My Special Girl, Maha 💗</h2>
+
+            <p>
+                Today is all about you, mahaaa! 🌸<br>
+                I have a little surprise made especially for you.
+            </p>
+
+            <button id="openButton">
+                Open Your Surprise 💌
+            </button>
+        </div>
+
+        <div id="surprise">
+
+            <h1>Happy Birthday, Maha! 💖</h1>
+
+            <div class="card">
+                <h2>🌷 A Little Wish for You 🌷</h2>
+
+                <p>
+                    I wish you endless happiness, unlimited success,
+                    beautiful memories, and all the wonderful things
+                    your heart desires.
+                </p>
+
+                <p>
+                    Keep smiling, keep shining, and never forget
+                    how incredibly special you are. 🌸
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>🎶 A Song Just for You 🎶</h2>
+                <p>Listen to this little song, my life 💗</p>
+
+                <audio id="birthdaySong" controls loop preload="auto">
+                    <source src="./maha-song.mp3" type="audio/mpeg">
+                    Your browser cannot play this audio file.
+                </audio>
+
+                <p id="audioStatus" class="small">
+                    Press play and enjoy, mahaaa 💕
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>💍 One Little Promise</h2>
+
+                <p>
+                    No matter how busy life gets, I hope you always
+                    find reasons to smile. You deserve all the happiness
+                    and beautiful moments in the world. ❤️
+                </p>
+            </div>
+
+            <button id="finalButton">
+                One Last Surprise 💝
+            </button>
+
+            <p id="finalMessage"></p>
+
+        </div>
+
+    </div>
+
+    <script>
+        const welcome = document.getElementById("welcome");
+        const surprise = document.getElementById("surprise");
+        const finalMessage = document.getElementById("finalMessage");
+        const birthdaySong = document.getElementById("birthdaySong");
+        const audioStatus = document.getElementById("audioStatus");
+
+        document.getElementById("openButton").addEventListener("click", function () {
+            welcome.style.display = "none";
+            surprise.style.display = "block";
+            showHearts();
+
+            birthdaySong.load();
+        });
+
+        birthdaySong.addEventListener("error", function () {
+            audioStatus.textContent =
+                "Audio could not load. Check that maha-song.mp3 is in the same folder as index.html.";
+        });
+
+        birthdaySong.addEventListener("canplay", function () {
+            audioStatus.textContent = "Your birthday song is ready, mahaaa 💕";
+        });
+
+        document.getElementById("finalButton").addEventListener("click", function () {
+            finalMessage.textContent =
+                "mahaaa 💞 You are my today, my tomorrow, and my favourite forever. I hope this little surprise makes you smile. Happy Birthday, my life! ❤️🎂";
+
+            showHearts();
+        });
+
+        function showHearts() {
+            const emojis = ["💗", "💖", "💕", "❤️", "🌸"];
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("div");
+
+                heart.className = "heart";
+                heart.textContent =
+                    emojis[Math.floor(Math.random() * emojis.length)];
+
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.fontSize = (18 + Math.random() * 22) + "px";
+                heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+                document.body.appendChild(heart);
+
+                setTimeout(function () {
+                    heart.remove();
+                }, 8000);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
